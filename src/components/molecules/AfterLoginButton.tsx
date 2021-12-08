@@ -32,7 +32,7 @@ const AfterLoginButton = () => {
 
   return (
     <div className="flex items-center justify-end w-full">
-      {user.image.path !== "" ? (
+      {/* {user.image.path !== "" ? (
         <IconButton onClick={handleClick}>
           <Image
             className="rounded-full"
@@ -50,7 +50,13 @@ const AfterLoginButton = () => {
             <DropdownIcon />
           </IconButton>
         </div>
-      )}
+      )} */}
+      <div>
+        <IconButton onClick={handleClick}>
+          <AccountCircleIcon />
+          <DropdownIcon />
+        </IconButton>
+      </div>
       <Menu
         anchorEl={anchorEl}
         keepMounted
@@ -58,7 +64,7 @@ const AfterLoginButton = () => {
         onClose={handleClose}
       >
         <div className="mx-12 mt-2 flex items-center justify-evenly">
-          {user.image.path !== "" ? (
+          {/* {user.image.path !== "" ? (
             <Image
               className="rounded-full"
               src={user.image.path}
@@ -74,12 +80,19 @@ const AfterLoginButton = () => {
               width={56}
               height={56}
             />
-          )}
+          )} */}
+          <Image
+            className="rounded-full"
+            src={NoProfileImage}
+            alt="NoProfileImage"
+            width={56}
+            height={56}
+          />
         </div>
         <h3 className="text-xl flex items-center justify-evenly border-b mx-2 my-1 border-gray-400">
           {user.username}
         </h3>
-        <MenuItem onClick={goToProfile}>プロフィール</MenuItem>
+        {/* <MenuItem onClick={goToProfile}>プロフィール</MenuItem> */}
         <MenuItem
           onClick={() => {
             dispatch(signOutUser());
