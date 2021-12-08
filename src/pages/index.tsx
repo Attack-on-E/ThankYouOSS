@@ -15,10 +15,8 @@ const Home: NextPage = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="w-screen h-full flex justify-center bg-gray-200">
-        <div className="w-1/2 h-3/5 mt-24 bg-fire-img">
-          <Start />
-        </div>
+      <div className="w-full h-full flex justify-center items-center bg-gray-200">
+        Thank you OSS app
       </div>
     </div>
   );
