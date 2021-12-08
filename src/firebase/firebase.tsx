@@ -18,6 +18,8 @@ if (!firebase.apps.length) {
 export const auth = firebase.auth();
 export const db = firebase.firestore();
 export const storage = firebase.storage();
+export const githubProvider = new firebase.auth.GithubAuthProvider();
 export const fb = firebase;
 export const FirebaseFieldValue = firebase.firestore.FieldValue;
 export const FirebaseTimestamp = firebase.firestore.Timestamp;
+export default firebase;

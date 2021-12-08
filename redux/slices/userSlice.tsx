@@ -5,6 +5,7 @@ import {
   FirebaseTimestamp,
   db,
   storage,
+  githubProvider,
 } from "../../src/firebase/firebase";
 import Router from "next/router";
 
@@ -172,6 +173,35 @@ export const addUser = createAsyncThunk(
   }
 );
 
+export const signInUser = createAsyncThunk("user/signInUser", async () => {
+  const result = await auth.signInWithPopup(githubProvider);
+  const user = result.user;
+  const uid = result.user?.uid;
+  const image = result.user?.photoURL;
+  const email = result.user?.email;
+  console.log(user);
+  const loginData = {
+    uid: uid,
+    username: email,
+    email: email,
+    isSignedIn: true,
+    image: {
+      id: uid,
+      path: image,
+    },
+  };
+  db.collection("users").doc(uid).set(loginData, { merge: true });
+  return {
+    uid: uid,
+    image: {
+      id: uid,
+      path: image,
+    },
+    username: email,
+    isSignedIn: true,
+  };
+});
+
 export const fetchUser = createAsyncThunk(
   "user/fetchUser",
   async (fetchuser: fetchuser) => {
@@ -223,6 +253,12 @@ const userSlice = createSlice({
     builder.addCase(fetchUser.fulfilled, (state, action: any) => {
       state.user = action.payload; // payloadCreatorでreturnされた値
       alert("ログインしました。");
+      Router.push("/");
+    });
+    builder.addCase(signInUser.fulfilled, (state, action: any) => {
+      state.user = action.payload;
+      console.log(state.user);
+      alert("ログインしました．");
       Router.push("/");
     });
     builder.addCase(signOutUser.fulfilled, (state, action: any) => {
