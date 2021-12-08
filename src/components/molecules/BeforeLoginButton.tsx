@@ -1,11 +1,17 @@
-import { Button } from "../atoms";
+import { PButton } from "../atoms";
+import { signInUser } from "../../../redux/slices/userSlice";
+import { useDispatch } from "react-redux";
 
 const BeforeLoginButton = () => {
+  const dispatch = useDispatch();
   return (
     <div className="flex justify-around">
-      <Button buttonText="新規登録" href="/signup" />
-      <div>&nbsp; &nbsp; &nbsp; &nbsp;</div>
-      <Button buttonText="ログイン" href="/signin" />
+      <PButton
+        label="Githubでログイン"
+        onClick={() => {
+          dispatch(signInUser());
+        }}
+      />
     </div>
   );
 };
