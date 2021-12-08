@@ -34,6 +34,7 @@ const LikeButton: React.FC<PROPS> = (props) => {
           [props.reposName]: { "thankCount": thankCount + 1 }
         }).then(() => {
           console.log("更新に成功しました");
+          alert("感謝登録しました")
         })
           .catch((error) => {
             console.log(`更新に失敗しました (${error})`);
@@ -49,9 +50,12 @@ const LikeButton: React.FC<PROPS> = (props) => {
   };
 
   return (
-    <button onClick={LikeOnClick} className="text-center text-xl text-white w-32 py-2 shadow-2xl border-4 border-pink-500 bg-pink-400 bg-opacity-62  font-semibold rounded-full hover:bg-pink-300">
-      ありがとう
-    </button>
+    <div className="w-fll h-full flex justyfy-center items-center">
+      <button onClick={LikeOnClick} className="text-center text-xl text-white w-32 py-2 shadow-2xl border-4 border-pink-500 bg-pink-400 bg-opacity-62  font-semibold rounded-full hover:bg-pink-300">
+        ありがとう
+      </button>
+    </div>
+    
   );
 };
 
