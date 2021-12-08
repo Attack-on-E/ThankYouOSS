@@ -8,7 +8,7 @@ const Home: NextPage = () => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Attack Algorithm</title>
+        <title>Thank you OSS</title>
         <meta
           name="description"
           content="Logical Thinking Skills Learning App"
