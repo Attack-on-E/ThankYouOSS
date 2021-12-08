@@ -8,6 +8,7 @@ import {
   githubProvider,
 } from "../../src/firebase/firebase";
 import Router from "next/router";
+import UserName from "../../src/pages/thanks";
 
 export type userState = {
   user: {
@@ -53,6 +54,14 @@ export type userimage = {
     path: string;
   };
 };
+
+export type LoginUser = {
+  uid: string;
+}
+
+export type Username = {
+  userName: string;
+}
 
 export const deleteUserImage = createAsyncThunk(
   "user/deleteUserImage",
@@ -230,6 +239,9 @@ export const fetchUser = createAsyncThunk(
   }
 );
 
+
+
+
 // State, Reducer, Action を一気に生成する
 const userSlice = createSlice({
   name: "user", //スライスの名前を設定
@@ -276,6 +288,24 @@ const userSlice = createSlice({
     });
   },
 });
+
+export const setUserName = createAsyncThunk("user/getUserName", async (username: Username) => {
+  const userName = username.userName;
+
+
+
+})
+
+
+export const getThankedRepos = createAsyncThunk("user/getThankedRepos", async (loginUser: LoginUser) => {
+  const uid = loginUser.uid;
+  const data: any = await (
+    await db.collection("userThanks").doc(uid).get()
+  ).data();
+
+  return data;
+
+})
 
 export const { updateUserState } = userSlice.actions;
 

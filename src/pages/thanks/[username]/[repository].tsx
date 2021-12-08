@@ -8,8 +8,7 @@ const UserName: NextPage = () => {
   const repoName = router.query['repository'];
   return (
     <div>
-      <p>{userName}</p>
-      <p>{repoName}</p>
+      <LikeButton userName={String(userName)} reposName={String(repoName)} />
     </div>
   );
 };
